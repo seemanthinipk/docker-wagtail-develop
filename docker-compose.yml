@@ -9,7 +9,7 @@ services:
     container_name: "web"
     build: ./
     working_dir: /code/bakerydemo
-    command: ./manage.py runserver 0.0.0.0:8000
+    command: bash ./entrypoint.sh 
     restart: "no"
     volumes:
       - ./wagtail:/code/wagtail:delegated,rw
@@ -17,6 +17,12 @@ services:
       - node_modules:/code/wagtail/node_modules/
     ports:
       - "8000:8000"
+      - "8422:22"
+      - "8443:443"
+      - "8888:8888"
+      - "8100:8100"
+      - "8200:8200"
+      - "8080:80"
     environment:
       DATABASE_URL: "postgres://wagtail:changeme@db/wagtail"
       PYTHONPATH: "/code/wagtail:/code/bakerydemo:$PYTHONPATH"
