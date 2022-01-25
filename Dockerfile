@@ -11,7 +11,7 @@ RUN apt-get update -y \
     && mkdir -p /code/requirements
 
 # Install the bakerydemo project's dependencies into the image.
-COPY ./entrypoint.sh  /code/bakerydemo/
+COPY ./entrypoint.sh  /code/
 COPY ./bakerydemo/requirements/* /code/requirements/
 RUN pip install --upgrade pip \
     && pip install -r /code/requirements/production.txt
@@ -44,3 +44,10 @@ RUN echo "docker:docker" | chpasswd
 EXPOSE 22
 EXPOSE 80
 EXPOSE 443
+EXPOSE 8100
+EXPOSE 8200
+EXPOSE 8300
+EXPOSE 8180
+EXPOSE 8280
+EXPOSE 8380
+EXPOSE 8888
