@@ -7,11 +7,12 @@ ENV PYTHONUNBUFFERED 1
 
 # Install libenchant and create the requirements folder.
 RUN apt-get update -y \
-    && apt-get install -y libenchant-2-dev postgresql-client git sudo vim tmux openssh-server \
+    && apt-get install -y libenchant-2-dev dos2unix postgresql-client git sudo vim tmux openssh-server \
     && mkdir -p /code/requirements
 
 # Install the bakerydemo project's dependencies into the image.
 COPY ./entrypoint.sh  /code/
+RUN dos2unix /code/entrypoint.sh
 COPY ./bakerydemo/requirements/* /code/requirements/
 RUN pip install --upgrade pip \
     && pip install -r /code/requirements/production.txt
